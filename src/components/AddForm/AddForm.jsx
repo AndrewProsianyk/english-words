@@ -1,10 +1,22 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import './AddForm.scss'
 
+
+
+
+
 export default function AddForm() {
-    const [engField, setEngField]= useState('')
-    const [uaField, setUaField] = useState('')
-    
+  const [engField, setEngField]= useState('')
+  const [uaField, setUaField] = useState('')
+
+  const [wordList, setWordList] = useState(
+    () => JSON.parse(window.localStorage.getItem('wordList')) ?? [{eng: 'dog', ua: 'пес'}]
+  );
+  
+  useEffect(() => {
+    window.localStorage.setItem('wordList',JSON.stringify(wordList))
+  }, [wordList])
+
  const inputChange = e => {
     switch (e.currentTarget.name) {
       case 'eng':
@@ -16,18 +28,18 @@ export default function AddForm() {
       default:
         return
     }
-    };
+  };
     
     const onSubmitForm = e => {
-    e.preventDefault();
-    
+      e.preventDefault();
+      setWordList(prevState=>[{eng: engField, ua: uaField}, ...prevState])  
       setEngField('');
       setUaField('');
     }
   
 
     return (
-        <form onSubmit={onSubmitForm}>
+         <form onSubmit={onSubmitForm}>
             <div className="form-box">
                 <label className="form-label" htmlFor=""><span className="label-span">English</span>
                     <input

@@ -6,6 +6,13 @@ import BasePage from './pages/BasePage/BasePage';
 
 
 function App() {
+  // const [contacts, setContacts] = useState(
+  //   () => JSON.parse(window.localStorage.getItem('contacts')) ?? defaultContacts
+  // );
+
+  // useEffect(() => {
+  //   window.localStorage.setItem('contacts', JSON.stringify(contacts))
+  // }, [contacts])
   return (
     <div className="App">
       <AppBar />
