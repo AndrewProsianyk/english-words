@@ -1,30 +1,40 @@
-import {useState, useEffect} from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import {removeWord} from '../../redux/actions'
+
 import { v4 as uuidv4 } from 'uuid';
 
 import './WordList.scss';
 
-export default function WordList() {
-    const [list, setList]= useState(()=>JSON.parse(window.localStorage.getItem('wordList')))
-useEffect(() => {
-    window.localStorage.setItem('wordList',JSON.stringify(list))
-}, [list])
-    
-const deleteWord = eng => {
-    setList(prevState =>prevState.filter(word=>word.eng!==eng))
-  }
+
+function WordList({onRemoveWord, words}) {
+    console.log(words)
     return (
         <ul>
-            {list.map(item => {
+            {words.length > 0 ? words.map(word => {
                 return (
                     <li key={uuidv4()}
                         className="list-item"
                     >
-                        <span>{item.eng}</span>
-                        <span>{item.ua}</span>
-                        <button onClick={deleteWord} type="button" className="del-button">X</button>
+                        <span>{word.eng}</span>
+                        <span>{word.ua}</span>
+                        <button
+                            onClick={()=>onRemoveWord(word.id)}
+                            type="button" className="del-button">X</button>
                     </li>
                 )
-            })}
+            }): null
+        }
         </ul>
     )
 }
+
+const mapStateToProps = state => ({
+    words:state.words
+})
+
+const mapDispatchToProps = dispatch => ({
+    onRemoveWord: id => dispatch(removeWord(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(WordList)

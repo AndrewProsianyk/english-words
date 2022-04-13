@@ -1,6 +1,7 @@
 import React from 'react';
 import './BasePage.scss';
 import WordList from '../../components/WordList/WordList';
+import Filter from '../../components/Filter/Filter';
 
 
 
@@ -8,9 +9,7 @@ export default function BasePage() {
     return (
         <div className="container">
             <div className="base-page">
-                <label className="label"><span className="search-label">Search</span>
-                    <input className="search-input" type="text" />
-                </label>
+                <Filter/>
                 <WordList/>
             </div>
         </div>

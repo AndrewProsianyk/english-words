@@ -31,8 +31,12 @@
   height: 50px;
   border: none;
   border-radius: 3px;
-  background-color: rgb(85, 85, 85);
+  background-color: rgb(44, 145, 41);
   color: #fff;
   font-size: 26px;
   cursor: pointer;
+
+  &:disabled {
+    background-color: rgb(190, 22, 22);
+  }
 }
