@@ -7,8 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import './WordList.scss';
 
 
-function WordList({onRemoveWord, words}) {
-    console.log(words)
+function WordList({words, onRemoveWord}) {
     return (
         <ul>
             {words.length > 0 ? words.map(word => {
@@ -29,8 +28,29 @@ function WordList({onRemoveWord, words}) {
     )
 }
 
+const getVisibleWords = (allWords, filter) => {
+    const normalizedFilter = filter.toLowerCase();
+    
+    const filtered = function () {
+        if (filter.match(/^[A-z]/)) {
+            return allWords.filter(({ eng }) =>
+                eng.toLowerCase().includes(normalizedFilter),
+            );
+        } else {
+            return allWords.filter(({ ua }) =>
+                ua.toLowerCase().includes(normalizedFilter),
+            );
+        }
+    }
+    return filtered()
+
+//   return allWords.filter(({ eng }) =>
+//     eng.toLowerCase().includes(normalizedFilter),
+//   );
+};
+
 const mapStateToProps = state => ({
-    words:state.words
+    words: getVisibleWords( state.words, state.filter)
 })
 
 const mapDispatchToProps = dispatch => ({

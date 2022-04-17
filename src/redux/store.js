@@ -1,27 +1,43 @@
+import { configureStore, createReducer, combineReducers } from '@reduxjs/toolkit';
+import { getDefaultMiddleware } from '@reduxjs/toolkit';
+import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'
+import { addWord, removeWord, filterChange } from './actions'
 
-import { createStore, combineReducers } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-
-
-const wordReducer = (state = [], { type, payload }) => {
-    switch (type) {
-        case 'ADD_WORD':
-            return [...state, payload];
-
-        case 'REMOVE_WORD':
-            return state.filter(word => word.id !== payload);
-        default:
-            return state
-    }
+const persistConfig = {
+    key: 'words',
+    storage,
+    blacklist: ['filter']
 }
 
-const rootReducer = combineReducers({
-    words: wordReducer
+const wordReducer = createReducer([], {
+    [addWord]: (state, action) => [...state, action.payload],
+    [removeWord]: (state, action) => state.filter(word => word.id !== action.payload)
 })
 
-const store = createStore(
-    rootReducer,
-    composeWithDevTools()
-)
+const filterReducer = createReducer('', {
+    [filterChange]: (_, action) => action.payload
+})
 
-export default store;
+const rootReducer = combineReducers({
+    words: wordReducer,
+    filter: filterReducer
+})
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+
+
+const store = configureStore({
+    reducer: persistedReducer,
+    devTools: process.env.NODE_ENV === 'development',
+    middleware: getDefaultMiddleware({
+        serializableCheck: {
+            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+        }
+    })
+})
+
+const persistor = persistStore(store)
+
+export default { store, persistor };
