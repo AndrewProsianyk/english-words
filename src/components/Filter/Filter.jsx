@@ -1,12 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import {filterChange} from '../../redux/actions'
+import { useDispatch, useSelector } from 'react-redux';
+import { filterChange } from '../../redux/actions'
+import {getFilter} from '../../redux/selectors'
 
 import './Filter.scss'
 
 
-const Filter = ({value, onChange}) => {   
-   
+export default function Filter() {  
+    const value = useSelector(getFilter)
+    const dispatch = useDispatch()
     return (
         <>
             <label className="label"><span className="search-label">Search</span>
@@ -14,19 +16,9 @@ const Filter = ({value, onChange}) => {
                     className="search-input"
                     type="text"
                     value={value}
-                    onChange={onChange}
+                    onChange={(e)=>dispatch(filterChange(e.target.value))}
                 />
             </label>
         </>
     );
-}
-
-const mapStateToProps = state => ({
-    value: state.filter
-})
-
-const mapDispatchToProps = dispatch => ({
-    onChange: e => dispatch(filterChange(e.target.value))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+};

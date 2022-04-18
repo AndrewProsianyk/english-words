@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {addWord} from '../../redux/actions'
 import './AddForm.scss'
 
 
-function AddForm({ onAddWord }) {
+export default function AddForm() {
   const [engField, setEngField] = useState('')
   const [uaField, setUaField] = useState('')
   const [disableButton, setDisableButton] = useState(false)
 
+  const dispatch = useDispatch()
+
   useEffect(() => {
+    // eslint-disable-next-line no-mixed-operators
     if (engField === '' && uaField === '' || engField === ''||uaField === '') {
       setDisableButton(true)
     } else {
@@ -17,14 +20,8 @@ function AddForm({ onAddWord }) {
     }
   }, [engField,uaField]);
 
-  // const [wordList, setWordList] = useState(
-  //   () => JSON.parse(window.localStorage.getItem('wordList')));
 
-  // useEffect(() => {
-  //   window.localStorage.setItem('wordList',JSON.stringify(wordList))
-  // }, [wordList])
-
- const inputChange = e => {
+  const inputChange = e => {
     switch (e.currentTarget.name) {
       case 'eng':
         setEngField(e.currentTarget.value);
@@ -37,44 +34,39 @@ function AddForm({ onAddWord }) {
     }
   };
     
-    const onSubmitForm = e => {
-      e.preventDefault();
-      setEngField('');
-      setUaField('');
-    }
+  const onSubmitForm = e => {
+    e.preventDefault();
+    dispatch(addWord(engField, uaField))
+    setEngField('');
+    setUaField('');
+  };
   
 
-    return (
-         <form 
-          onSubmit={onSubmitForm}
-         >
-            <div className="form-box">
-                <label className="form-label" htmlFor=""><span className="label-span">English</span>
-                    <input
-                        type="text" 
-                        name="eng" 
-                        className="form-input"
-                        value={engField}
-                        onChange={inputChange}
-                        />
-                </label>
-                <label className="form-label" htmlFor=""><span className="label-span">Ukrainian</span>
-                    <input
-                        type="text" 
-                        name="ua" 
-                        className="form-input"
-                        value={uaField}
-                        onChange={inputChange}
-                        />
-                </label>
-            </div>
-            <button disabled={disableButton} onClick={()=>onAddWord(engField, uaField)} type="submit" className="form-button">Add</button>
-        </form>
-    )
-}
-
-const mapDispatchToProps = dispatch => ({
-  onAddWord: (engField, uaField) => dispatch(addWord(engField, uaField))
-})
-
-export default connect(null ,mapDispatchToProps)(AddForm)
+  return (
+    <form
+      onSubmit={onSubmitForm}
+    >
+      <div className="form-box">
+        <label className="form-label" htmlFor=""><span className="label-span">English</span>
+          <input
+            type="text"
+            name="eng"
+            className="form-input"
+            value={engField}
+            onChange={inputChange}
+          />
+        </label>
+        <label className="form-label" htmlFor=""><span className="label-span">Ukrainian</span>
+          <input
+            type="text"
+            name="ua"
+            className="form-input"
+            value={uaField}
+            onChange={inputChange}
+          />
+        </label>
+      </div>
+      <button disabled={disableButton} type="submit" className="form-button">Add</button>
+    </form>
+  );
+};
