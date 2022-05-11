@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/english-words/static/css/main.17ad2483.css",
-    "main.js": "/english-words/static/js/main.bd966c4f.js",
+    "main.css": "/english-words/static/css/main.eee66eb1.css",
+    "main.js": "/english-words/static/js/main.efdf8ddc.js",
     "index.html": "/english-words/index.html",
-    "main.17ad2483.css.map": "/english-words/static/css/main.17ad2483.css.map",
-    "main.bd966c4f.js.map": "/english-words/static/js/main.bd966c4f.js.map"
+    "main.eee66eb1.css.map": "/english-words/static/css/main.eee66eb1.css.map",
+    "main.efdf8ddc.js.map": "/english-words/static/js/main.efdf8ddc.js.map"
   },
   "entrypoints": [
-    "static/css/main.17ad2483.css",
-    "static/js/main.bd966c4f.js"
+    "static/css/main.eee66eb1.css",
+    "static/js/main.efdf8ddc.js"
   ]
 }
