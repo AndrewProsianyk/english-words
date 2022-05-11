@@ -1,14 +1,14 @@
 .App {
   text-align: center;
+  background-color: #DCF0F9;
 }
 
 .container {
-  max-width: 1200px;
-  padding-left: 160px;
-  padding-right: 160px;
+  max-width: 375px;
+  padding-left: 18px;
+  padding-right: 18px;
   margin-left: auto;
   margin-right: auto;
-  // background-color: rgb(243, 115, 115);
 }
 ul {
   list-style: none;
@@ -18,9 +18,8 @@ a {
   text-decoration: none;
 }
 body {
-  background-color: gray;
   margin: 0px;
-  font-family: 'Roboto', Sans-serif;
+  font-family: 'Poppins', Sans-serif;
 }
 h1,
 h2,
@@ -29,4 +28,8 @@ h4,
 h5,
 h6 {
   margin: 0;
+}
+
+html {
+  box-sizing: border-box;
 }

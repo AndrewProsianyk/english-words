@@ -1,0 +1,37 @@
+.select{
+    display: inline-block;
+    // height: 40px;
+    // width: 120px;
+    background-color: transparent;
+    position: relative;
+}
+.sort-button {
+    display:flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    padding: 0;
+    width: 66px;
+    background-color: transparent;
+    border: none;
+    font-size: 12px;
+    line-height: 1.5;
+}
+.sort-list {
+    display: block;
+    background-color: rgb(255, 255, 255);
+    border-radius: 3px;
+    width: 75px;
+    position: absolute;
+    top: 2px;
+    left: 0px;
+}
+.sort-option {
+    padding: 2px;
+    font-size: 12px;
+
+}
+.selectTwo {
+    background-color: transparent;
+    border:none;
+}
