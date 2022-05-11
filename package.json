@@ -2,7 +2,7 @@
   "name": "english-words",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://AndrewProsianyk.github.io/english-words",
+  "homepage": "https://AndrewProsianyk.github.io/english-words/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.16.1",
