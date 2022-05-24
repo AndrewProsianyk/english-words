@@ -9,14 +9,14 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route exact path="/" element={<FlashcardsPage />} />
+        <Route exact path="/flashcards" element={<FlashcardsPage />} />
         <Route path="/exam" element={<span>Exam</span>} />
         <Route path="/settings" element={<span>settings</span>} />
         <Route path="/account" element={<span>account</span>} />
-        <Route path="/new-theme" element={<NewThemePage />} />
+        <Route path="/flashcards/new-theme" element={<NewThemePage />} />
         <Route
           path="*"
-          element={<Navigate to="/" replace />}
+          element={<Navigate to="/flashcards" replace />}
         />
       </Routes>
       <AppBar />

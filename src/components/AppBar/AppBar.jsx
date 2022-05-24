@@ -6,7 +6,7 @@ export default function AppBar() {
     return (
         <div className="app-bar">
             <div className="navigation">
-                <NavLink to="/" className="nav-link" activeclassname="active">
+                <NavLink to="/flashcards" className="nav-link" activeclassname="active">
                     <svg className="menu-icon" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.31426 3.37378H6.19694C4.63778 3.37378 3.37384 4.63772 3.37384 6.19688V8.3142C3.37384 9.87335 4.63778 11.1373 6.19694 11.1373H8.31426C9.87342 11.1373 11.1374 9.87335 11.1374 8.3142V6.19688C11.1374 4.63772 9.87342 3.37378 8.31426 3.37378Z" fill="#6E92C8" />
                         <path d="M17.803 3.37378H15.6857C14.1266 3.37378 12.8626 4.63772 12.8626 6.19688V8.3142C12.8626 9.87335 14.1266 11.1373 15.6857 11.1373H17.803C19.3622 11.1373 20.6261 9.87335 20.6261 8.3142V6.19688C20.6261 4.63772 19.3622 3.37378 17.803 3.37378Z" fill="#6E92C8" />

@@ -1,0 +1,70 @@
+.newTheme-page {
+    padding-top: 22px;
+    padding-bottom: 89px;
+    height: 100%;
+    background-color: rgb(176, 247, 244);
+    min-height: calc(100vh - 89px);
+}
+.card-menu {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 24px;
+}
+
+.back-button {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+}
+
+.card-title {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+     color: #0B0C27;
+}
+
+.done-button {
+    padding: 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0B0C27;
+    background-color: transparent;
+    border: none;
+}
+
+// CARD NAME INPUT
+.cardName-input {
+    width: 100%;
+    height: 37px;
+    padding: 0px 5px 0px 12px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    border: none;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #A1A1A9;
+}
+
+.input-label {
+    display: block;
+    text-align: start;
+    margin-bottom: 5px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #3B3C57;
+}
+

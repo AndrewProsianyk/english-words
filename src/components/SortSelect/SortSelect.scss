@@ -4,6 +4,7 @@
     // width: 120px;
     background-color: transparent;
     position: relative;
+    font-family: 'Poppins';
 }
 .sort-button {
     display:flex;
@@ -17,6 +18,15 @@
     font-size: 12px;
     line-height: 1.5;
 }
+.sortButton-text {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #000000;
+}
+
 .sort-list {
     display: block;
     background-color: rgb(255, 255, 255);

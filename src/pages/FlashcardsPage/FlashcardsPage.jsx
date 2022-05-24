@@ -21,9 +21,9 @@ export default function FlashcardsPage() {
         setColumn(!column)
     }
     return (
-        <div className="container">
+        <div id="asd" className="flashCard-page container">
             <Filter/>
-            <div className="display-menu container">
+            <div className="display-menu">
                 <SortSelect />
                 <GridButton cardsDisplay={cardsDisplay} column={column} />
             </div>

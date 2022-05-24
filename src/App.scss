@@ -1,6 +1,8 @@
 .App {
   text-align: center;
-  background-color: #DCF0F9;
+  font-family: 'Poppins', sans-serif;
+  height: 100%;
+  background-color: rgb(161, 252, 252);
 }
 
 .container {
@@ -30,6 +32,6 @@ h6 {
   margin: 0;
 }
 
-html {
-  box-sizing: border-box;
-}
+// * {
+//   box-sizing: border-box;
+// }
