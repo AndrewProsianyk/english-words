@@ -1,11 +1,13 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './Theme.scss'
 
-export default function Theme({name}) {
+export default function Theme({ name, path }) {
+
+
   return (
-    <NavLink to='/folder' className='theme-folder'>
+    <Link to={path} className='theme-folder'>
         {name}
-    </NavLink>
+    </Link>
   )
 }

@@ -19,3 +19,4 @@ export const getVisibleWords = state => {
     }
     return filtered()
 };
+export const getAllThemes = state => state.themes

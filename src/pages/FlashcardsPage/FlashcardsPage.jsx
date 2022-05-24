@@ -6,7 +6,7 @@ import Filter from '../../components/Filter/Filter'
 import './FlashcardsPage.scss'
 
 export default function FlashcardsPage() {
-    const [column, setColumn] = useState(false)
+    const [column, setColumn] = useState(() => JSON.parse(window.localStorage.getItem('column')) ?? false)
     
     useEffect(() => {
         const changeBtn = document.querySelector('.themes-list')
@@ -15,13 +15,15 @@ export default function FlashcardsPage() {
         } else {
             changeBtn.classList.remove('column')
         }
-    },[column])
-
+        window.localStorage.setItem('column', JSON.stringify(column))
+    }, [column])
+    
     const cardsDisplay = () => {
         setColumn(!column)
     }
+    
     return (
-        <div id="asd" className="flashCard-page container">
+        <div className="flashCard-page container">
             <Filter/>
             <div className="display-menu">
                 <SortSelect />

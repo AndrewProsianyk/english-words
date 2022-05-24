@@ -12,3 +12,14 @@ export const addWord = createAction('ADD_WORD', (e, u) => ({
 export const removeWord = createAction('REMOVE_WORD')
 
 export const filterChange = createAction('FILTER_CHANGE')
+
+// THEMES
+
+export const addTheme = createAction('ADD_THEME', (name) => ({
+    payload: {
+        name,
+        path: `/flashcards/${name}`,
+        words: [],
+        id: uuidv4()
+    }
+}));

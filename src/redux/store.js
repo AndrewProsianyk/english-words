@@ -2,7 +2,7 @@ import { configureStore, createReducer, combineReducers } from '@reduxjs/toolkit
 import { getDefaultMiddleware } from '@reduxjs/toolkit';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'
-import { addWord, removeWord, filterChange } from './actions'
+import { addWord, removeWord, filterChange, addTheme } from './actions'
 
 const persistConfig = {
     key: 'words',
@@ -10,6 +10,9 @@ const persistConfig = {
     blacklist: ['filter']
 }
 
+const themeReducer = createReducer([], {
+    [addTheme]: (state, action) => [...state, action.payload],
+})
 const wordReducer = createReducer([], {
     [addWord]: (state, action) => [...state, action.payload],
     [removeWord]: (state, action) => state.filter(word => word.id !== action.payload)
@@ -20,6 +23,7 @@ const filterReducer = createReducer('', {
 })
 
 const rootReducer = combineReducers({
+    themes: themeReducer,
     words: wordReducer,
     filter: filterReducer
 })
