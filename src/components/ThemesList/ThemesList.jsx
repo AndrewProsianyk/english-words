@@ -9,7 +9,7 @@ export default function ThemesList({ column }) {
     const themes = useSelector(getAllThemes)
 
     return (
-        <div column={column} className="themes-list">
+        <div column={column? 1 : 0} className="themes-list">
             <Link
                 to="/flashcards/new-theme"
                 className="newTheme"
