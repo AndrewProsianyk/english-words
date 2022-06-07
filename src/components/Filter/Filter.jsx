@@ -1,7 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterChange } from '../../redux/actions'
-import {getFilter} from '../../redux/selectors'
+import { getFilter } from '../../redux/selectors'
+import { getCurrentUserName } from '../../redux/auth/user-selectors';
+
 
 import './Filter.scss'
 
@@ -9,9 +11,11 @@ import './Filter.scss'
 export default function Filter() {  
     const value = useSelector(getFilter)
     const dispatch = useDispatch()
+    const userName = useSelector(getCurrentUserName)
+
     return (
         <div className="filter-section">
-            <h2 className="main-title">Hello, User</h2>
+            <h2 className="main-title">Hello, {userName? userName : 'User'}</h2>
             <p className="title-subtext">What are you studying today?</p>
             <label className="label">
                 <svg className="input-icon" width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">

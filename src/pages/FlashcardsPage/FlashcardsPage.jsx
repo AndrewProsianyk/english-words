@@ -5,9 +5,12 @@ import ThemesList from '../../components/ThemesList/ThemesList'
 import Filter from '../../components/Filter/Filter'
 import './FlashcardsPage.scss'
 
+
 export default function FlashcardsPage() {
     const [column, setColumn] = useState(() => JSON.parse(window.localStorage.getItem('column')) ?? false)
     
+    
+
     useEffect(() => {
         const changeBtn = document.querySelector('.themes-list')
         if (column) {

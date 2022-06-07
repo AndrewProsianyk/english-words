@@ -3,6 +3,7 @@ import { getDefaultMiddleware } from '@reduxjs/toolkit';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'
 import { addWord, removeWord, filterChange, addTheme } from './actions'
+import { userReducer } from './auth/user-reducer'
 
 const persistConfig = {
     key: 'words',
@@ -25,7 +26,8 @@ const filterReducer = createReducer('', {
 const rootReducer = combineReducers({
     themes: themeReducer,
     words: wordReducer,
-    filter: filterReducer
+    filter: filterReducer,
+    user: userReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
