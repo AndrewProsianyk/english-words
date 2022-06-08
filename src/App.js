@@ -8,17 +8,16 @@ import ThemePage from './pages/ThemePage/ThemePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import AccountPage from './pages/AccountPage/AccountPage';
 import { auth, provider } from './firebase'
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setCurrentUser, removeUser } from './redux/auth/user-actions'
+import { useSelector } from 'react-redux';
+import { getIsLoggedIn } from './redux/auth/user-selectors';
 
 
 
 function App() {
-  const user = auth.currentUser;
-  console.log('Current user: ', user)
+  const isLoggedIn = useSelector(getIsLoggedIn)
   const dispatch = useDispatch()
-
 
 
   const login = () => {
@@ -38,26 +37,54 @@ function App() {
       console.log('signed out')
     }).catch(error => console.log(error))
   }
-
+  if (isLoggedIn) {
+    return (
+      <div className="App">
+        <Routes>
+          <Route exact path="/flashcards" element={<FlashcardsPage />} />
+          <Route path="/exam" element={<span>Exam</span>} />
+          <Route path="/settings" element={<span>settings</span>} />
+          <Route path="/account" element={<AccountPage logout={logout} />} />
+          <Route path="/flashcards/new-theme" element={<NewThemePage />} />
+          <Route path="/flashcards/:themeId" element={<ThemePage />} />
+          <Route
+            path="*"
+            element={<Navigate to="/flashcards" replace />}
+          />
+        </Routes>
+        <AppBar />
+      </div>
+    );
+  }
 
   return (
     <div className="App">
       <Routes>
         <Route path="/login" element={<LoginPage login={login} logout={logout} />} />
-        <Route exact path="/flashcards" element={<FlashcardsPage />} />
-        <Route path="/exam" element={<span>Exam</span>} />
-        <Route path="/settings" element={<span>settings</span>} />
-        <Route path="/account" element={<AccountPage logout={logout} />} />
-        <Route path="/flashcards/new-theme" element={<NewThemePage />} />
-        <Route path="/flashcards/:themeId" element={<ThemePage />} />
         <Route
           path="*"
-          element={<Navigate to="/flashcards" replace />}
+          element={<Navigate to="/login" replace />}
         />
       </Routes>
-      <AppBar />
     </div>
   );
 }
 
 export default App;
+
+{/* <div className="App">
+  <Routes>
+    <Route path="/login" element={<LoginPage login={login} logout={logout} />} />
+    <Route exact path="/flashcards" element={<FlashcardsPage />} />
+    <Route path="/exam" element={<span>Exam</span>} />
+    <Route path="/settings" element={<span>settings</span>} />
+    <Route path="/account" element={<AccountPage logout={logout} />} />
+    <Route path="/flashcards/new-theme" element={<NewThemePage />} />
+    <Route path="/flashcards/:themeId" element={<ThemePage />} />
+    <Route
+      path="*"
+      element={<Navigate to="/flashcards" replace />}
+    />
+  </Routes>
+  <AppBar />
+</div> */}
