@@ -2,35 +2,39 @@ import { configureStore, createReducer, combineReducers } from '@reduxjs/toolkit
 import { getDefaultMiddleware } from '@reduxjs/toolkit';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'
-import { addWord, removeWord, filterChange, addTheme } from './actions'
-import { userReducer } from './auth/user-reducer'
+import authSlice from './auth/auth-slice';
 
-const persistConfig = {
-    key: 'words',
+const authPersistConfig = {
+    key: 'auth',
     storage,
-    blacklist: ['filter']
+    whitelist: ['token']
 }
+// const persistConfig = {
+//     key: 'words',
+//     storage,
+//     blacklist: ['filter']
+// }
 
-const themeReducer = createReducer([], {
-    [addTheme]: (state, action) => [...state, action.payload],
-})
-const wordReducer = createReducer([], {
-    [addWord]: (state, action) => [...state, action.payload],
-    [removeWord]: (state, action) => state.filter(word => word.id !== action.payload)
-})
+// const themeReducer = createReducer([], {
+//     [addTheme]: (state, action) => [...state, action.payload],
+// })
+// const wordReducer = createReducer([], {
+//     [addWord]: (state, action) => [...state, action.payload],
+//     [removeWord]: (state, action) => state.filter(word => word.id !== action.payload)
+// })
 
-const filterReducer = createReducer('', {
-    [filterChange]: (_, action) => action.payload
-})
+// const filterReducer = createReducer('', {
+//     [filterChange]: (_, action) => action.payload
+// })
 
 const rootReducer = combineReducers({
-    themes: themeReducer,
-    words: wordReducer,
-    filter: filterReducer,
-    user: userReducer,
+    // themes: themeReducer,
+    // words: wordReducer,
+    // filter: filterReducer,
+    auth: authSlice,
 })
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedReducer = persistReducer(authPersistConfig, rootReducer)
 
 
 
@@ -46,4 +50,5 @@ const store = configureStore({
 
 const persistor = persistStore(store)
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default { store, persistor };

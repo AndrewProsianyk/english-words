@@ -1,12 +1,13 @@
-import React from 'react'
+import {useEffect} from 'react'
 import { Link} from 'react-router-dom';
 import './ThemesList.scss'
 import Theme from '../Theme/Theme';
 import { getAllThemes } from '../../redux/selectors';
+import { getCurrentUserID } from '../../redux/auth/user-selectors';
 import { useSelector } from 'react-redux';
 
 export default function ThemesList({ column }) {
-    const themes = useSelector(getAllThemes)
+   const themes = []
 
     return (
         <div column={column? 1 : 0} className="themes-list">

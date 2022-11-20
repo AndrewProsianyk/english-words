@@ -12,7 +12,7 @@ export default function Filter() {
     const value = useSelector(getFilter)
     const dispatch = useDispatch()
     const userName = useSelector(getCurrentUserName)
-
+    console.log(userName)
     return (
         <div className="filter-section">
             <h2 className="main-title">Hello, {userName? userName : 'User'}</h2>
