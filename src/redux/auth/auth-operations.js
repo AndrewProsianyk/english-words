@@ -2,6 +2,7 @@ import axios from "axios";
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'http://localhost:3001/api';
+// https://vocab-service.onrender.com/api
 
 const token = {
     set(token) {
@@ -24,10 +25,11 @@ const register = createAsyncThunk('auth/register', async credentials => {
 const login = createAsyncThunk('auth/login', async credentials => {
     try {
         const { data } = await axios.post('/auth/login', credentials);
+        console.log(data)
         token.set(data.data.token);
         return data;
     } catch (error) {
-        console.log(error.message)
+        alert(error.response.data.message)
     }
 });
 

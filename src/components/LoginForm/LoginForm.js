@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { setCurrentUser } from '../../redux/auth/user-actions';
 import operations from '../../redux/auth/auth-operations'
 
 export default function LoginForm() {
@@ -22,7 +21,6 @@ export default function LoginForm() {
     const handleSubmit = e => {
         e.preventDefault();
         dispatch(operations.login({ email, password }))
-        dispatch(setCurrentUser({ email, password }));
         setEmail('');
         setPassword('');
     };
