@@ -1,0 +1,1 @@
+export const getAllThemes = state => state.themes.themes

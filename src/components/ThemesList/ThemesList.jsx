@@ -2,12 +2,17 @@ import {useEffect} from 'react'
 import { Link} from 'react-router-dom';
 import './ThemesList.scss'
 import Theme from '../Theme/Theme';
-import { getAllThemes } from '../../redux/selectors';
-import { getCurrentUserID } from '../../redux/auth/user-selectors';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import themesOperations from '../../redux/themes/themes-operations'
+import {getAllThemes} from '../../redux/themes/themes-selectors'
 
 export default function ThemesList({ column }) {
-   const themes = []
+    const dispatch = useDispatch()
+    const themes = useSelector(getAllThemes)
+    
+    useEffect(() => {
+        dispatch(themesOperations.getAllThemes())
+    }, [dispatch])
 
     return (
         <div column={column? 1 : 0} className="themes-list">
@@ -22,11 +27,10 @@ export default function ThemesList({ column }) {
             </Link>
             {themes.length > 0 ? themes.map(theme => {
                 return (
-                    <Theme name={theme.name} key={theme.id} path={theme.id}/>
+                    <Theme name={theme.name} key={theme._id} path={theme._id}/>
                 )
             }) : null
             }
         </div>
     );
 }
-// ${url}

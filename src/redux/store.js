@@ -3,6 +3,7 @@ import { getDefaultMiddleware } from '@reduxjs/toolkit';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'
 import authSlice from './auth/auth-slice';
+import themesSlice from './themes/themes-slice';
 
 const authPersistConfig = {
     key: 'auth',
@@ -13,6 +14,7 @@ const authPersistConfig = {
 const store = configureStore({
     reducer: {
         auth: persistReducer(authPersistConfig, authSlice),
+        themes: themesSlice,
     },
     devTools: process.env.NODE_ENV === 'development',
     middleware: getDefaultMiddleware({

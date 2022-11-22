@@ -1,17 +1,19 @@
 import {useState} from 'react'
-import {Link} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './NewThemePage.scss'
 import WordCardsList from '../../components/WordCardsList/WordCardsList'
-import { addTheme } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
+import themesOperations from '../../redux/themes/themes-operations'
 
 export default function NewThemePage() {
     const [nameField, setNameField] = useState('New theme')
     const dispatch = useDispatch()
-
+    // const navigate = useNavigate()
+    // const themeLink = `http://localhost:3000/flashcards/${localStorage.getItem('addedTheme')}`
     const onAddThemeClick = () => {
-        dispatch(addTheme(nameField))
-        console.log('addTheme')
+        dispatch(themesOperations.addTheme({ name: nameField }))
+        // navigate(themeLink)
+        // localStorage.removeItem('addedTheme')
     }
 
     return (

@@ -16,7 +16,6 @@ function App() {
   const dispatch = useDispatch()
   const isLoggedIn = useSelector(getIsLoggedIn)
   const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser)
-  console.log(isFetchingCurrentUser)
 
   useEffect(() => {
     dispatch(authOperations.getCurrentUser())

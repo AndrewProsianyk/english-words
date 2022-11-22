@@ -1,8 +1,8 @@
 import axios from "axios";
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://vocab-service.onrender.com/api';
-// axios.defaults.baseURL = 'http://localhost:3001/api';
+// axios.defaults.baseURL = 'https://vocab-service.onrender.com/api';
+axios.defaults.baseURL = 'http://localhost:3001/api';
 // http://localhost:3001/api
 // https://vocab-service.onrender.com/api
 
