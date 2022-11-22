@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { filterChange } from '../../redux/actions'
 import { getFilter } from '../../redux/selectors'
 import { getCurrentUserName } from '../../redux/auth/user-selectors';
-
-
 import './Filter.scss'
 
 
@@ -12,7 +10,7 @@ export default function Filter() {
     const value = useSelector(getFilter)
     const dispatch = useDispatch()
     const userName = useSelector(getCurrentUserName)
-    console.log(userName)
+
     return (
         <div className="filter-section">
             <h2 className="main-title">Hello, {userName? userName : 'User'}</h2>

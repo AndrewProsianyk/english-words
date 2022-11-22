@@ -6,7 +6,6 @@ axios.defaults.baseURL = 'http://localhost:3001/api';
 const token = {
     set(token) {
         axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-        console.log(token)
     },
     unset() {
         axios.defaults.headers.common.Authorization = '';
@@ -16,7 +15,6 @@ const token = {
 const register = createAsyncThunk('auth/register', async credentials => {
     try {
         const { data } = await axios.post('/auth/register', credentials)
-        token.set(data.data.token);
         return data
     } catch (error) {
         console.log(error.message)
@@ -42,10 +40,28 @@ const logout = createAsyncThunk('auth/logout', async () => {
     }
 });
 
+const getCurrentUser = createAsyncThunk('auth/currentUser', async (_, thunkAPI) => {
+    const state = thunkAPI.getState()
+    const persistedToken = state.auth.token
+
+    if (persistedToken === null) {
+        console.log('No token')
+        return thunkAPI.rejectWithValue()
+    }
+    token.set(persistedToken)
+
+    try {
+        const { data } = await axios.get('/auth/currentUser')
+        return data
+    } catch (error) {
+        console.log(error.message)
+    }
+});
+
 const operations = {
     login,
     register,
     logout,
-    // loadUser,
+    getCurrentUser,
 };
 export default operations;

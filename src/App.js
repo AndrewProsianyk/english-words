@@ -1,6 +1,5 @@
 import './App.scss';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { signOut } from 'firebase/auth'
 import AppBar from './components/AppBar/AppBar';
 import FlashcardsPage from './pages/FlashcardsPage/FlashcardsPage';
 import NewThemePage from './pages/NewThemePage/NewThemePage';
@@ -8,20 +7,18 @@ import ThemePage from './pages/ThemePage/ThemePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
 import AccountPage from './pages/AccountPage/AccountPage';
-import { auth } from './firebase'
-import { useDispatch } from 'react-redux';
-import { setCurrentUser, removeUser } from './redux/auth/user-actions'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getIsLoggedIn } from './redux/auth/user-selectors';
+import { useEffect } from 'react';
+import authOperations from './redux/auth/auth-operations'
 
 function App() {
   const isLoggedIn = useSelector(getIsLoggedIn)
-  // const logout = () => {
-  //   signOut(auth).then(() => {
-  //     dispatch(removeUser())
-  //     console.log('signed out')
-  //   }).catch(error => console.log(error))
-  // }
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(authOperations.getCurrentUser())
+  }, [dispatch])
 
   if (isLoggedIn) {
     return (

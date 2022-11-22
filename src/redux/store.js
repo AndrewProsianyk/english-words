@@ -9,6 +9,24 @@ const authPersistConfig = {
     storage,
     whitelist: ['token']
 }
+
+const store = configureStore({
+    reducer: {
+        auth: persistReducer(authPersistConfig, authSlice),
+    },
+    devTools: process.env.NODE_ENV === 'development',
+    middleware: getDefaultMiddleware({
+        serializableCheck: {
+            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+        }
+    })
+})
+
+const persistor = persistStore(store)
+
+// eslint-disable-next-line import/no-anonymous-default-export
+export default { store, persistor };
+
 // const persistConfig = {
 //     key: 'words',
 //     storage,
@@ -26,29 +44,3 @@ const authPersistConfig = {
 // const filterReducer = createReducer('', {
 //     [filterChange]: (_, action) => action.payload
 // })
-
-const rootReducer = combineReducers({
-    // themes: themeReducer,
-    // words: wordReducer,
-    // filter: filterReducer,
-    auth: authSlice,
-})
-
-const persistedReducer = persistReducer(authPersistConfig, rootReducer)
-
-
-
-const store = configureStore({
-    reducer: persistedReducer,
-    devTools: process.env.NODE_ENV === 'development',
-    middleware: getDefaultMiddleware({
-        serializableCheck: {
-            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
-        }
-    })
-})
-
-const persistor = persistStore(store)
-
-// eslint-disable-next-line import/no-anonymous-default-export
-export default { store, persistor };
