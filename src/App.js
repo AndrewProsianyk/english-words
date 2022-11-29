@@ -11,6 +11,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getIsLoggedIn, getIsFetchingCurrentUser } from './redux/auth/user-selectors';
 import { useEffect } from 'react';
 import authOperations from './redux/auth/auth-operations'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const dispatch = useDispatch()
@@ -37,6 +39,7 @@ function App() {
               element={<Navigate to="/flashcards" replace />}
             />
           </Routes >
+          <ToastContainer />
           <AppBar />
         </div >
         :
@@ -49,6 +52,7 @@ function App() {
               element={<Navigate to="/login" replace />}
             />
           </Routes>
+          <ToastContainer />
         </div>
     )
 

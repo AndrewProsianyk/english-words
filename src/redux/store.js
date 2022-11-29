@@ -29,20 +29,3 @@ const persistor = persistStore(store)
 // eslint-disable-next-line import/no-anonymous-default-export
 export default { store, persistor };
 
-// const persistConfig = {
-//     key: 'words',
-//     storage,
-//     blacklist: ['filter']
-// }
-
-// const themeReducer = createReducer([], {
-//     [addTheme]: (state, action) => [...state, action.payload],
-// })
-// const wordReducer = createReducer([], {
-//     [addWord]: (state, action) => [...state, action.payload],
-//     [removeWord]: (state, action) => state.filter(word => word.id !== action.payload)
-// })
-
-// const filterReducer = createReducer('', {
-//     [filterChange]: (_, action) => action.payload
-// })

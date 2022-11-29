@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 // axios.defaults.baseURL = 'https://vocab-service.onrender.com/api';
 axios.defaults.baseURL = 'http://localhost:3001/api';
@@ -17,20 +18,22 @@ const token = {
 const register = createAsyncThunk('auth/register', async credentials => {
     try {
         const { data } = await axios.post('/auth/register', credentials)
+        toast.success('Successfully registered!')
         return data
     } catch (error) {
         console.log(error.message)
+        toast.error(error.response.data.message)
     }
 })
 
 const login = createAsyncThunk('auth/login', async credentials => {
     try {
         const { data } = await axios.post('/auth/login', credentials);
-        console.log(data)
         token.set(data.data.token);
+        toast.success(`Logged in!`)
         return data;
     } catch (error) {
-        alert(error.response.data.message)
+        toast.error(error.response.data.message)
     }
 });
 
@@ -39,7 +42,7 @@ const logout = createAsyncThunk('auth/logout', async () => {
         await axios.post('/auth/logout');
         token.unset()
     } catch (error) {
-        console.log(error.message)
+        toast.error(error.response.data.message)
     }
 });
 
