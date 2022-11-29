@@ -8,12 +8,10 @@ import themesOperations from '../../redux/themes/themes-operations'
 export default function NewThemePage() {
     const [nameField, setNameField] = useState('New theme')
     const dispatch = useDispatch()
-    // const navigate = useNavigate()
-    // const themeLink = `http://localhost:3000/flashcards/${localStorage.getItem('addedTheme')}`
+
     const onAddThemeClick = () => {
         dispatch(themesOperations.addTheme({ name: nameField }))
-        // navigate(themeLink)
-        // localStorage.removeItem('addedTheme')
+        // dispatch(themesOperations.getAllThemes())
     }
 
     return (
@@ -43,7 +41,7 @@ export default function NewThemePage() {
                     type="text"
                 />
             </label>
-            <WordCardsList />
+            {/* <WordCardsList /> */}
         </div>
     )
 }

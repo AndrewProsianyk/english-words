@@ -1,11 +1,13 @@
 import axios from "axios";
+
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 
 const addTheme = createAsyncThunk('themes/add', async credentials => {
     try {
+
         const newTheme = await axios.post('/themes', credentials)
-        // localStorage.setItem('addedTheme', newTheme.data.data.result._id)
+        console.log(newTheme, 'LAST THEME')
         return newTheme
     } catch (error) {
         console.log(error)
@@ -15,7 +17,6 @@ const addTheme = createAsyncThunk('themes/add', async credentials => {
 const getAllThemes = createAsyncThunk('themes/getAll', async () => {
     try {
         const allThemes = await axios.get('/themes')
-        // console.log(allThemes.data.data.themes)
         return allThemes.data.data.themes
     } catch (error) {
         console.log(error)

@@ -11,10 +11,10 @@ const themesSlice = createSlice({
     initialState,
     extraReducers: {
         [themesOperations.addTheme.fulfilled](state, action) {
-            state.themes = [action.payload, ...state.themes]
+            state.themes = [action.payload.data.data.result, ...state.themes]
         },
         [themesOperations.getAllThemes.fulfilled](state, action) {
-            console.log(action.payload)
+
             state.themes = [...action.payload]
         }
     }

@@ -4,11 +4,12 @@ import './ThemesList.scss'
 import Theme from '../Theme/Theme';
 import { useSelector, useDispatch } from 'react-redux';
 import themesOperations from '../../redux/themes/themes-operations'
-import {getAllThemes} from '../../redux/themes/themes-selectors'
+import {getFilteredThemes} from '../../redux/themes/themes-selectors'
 
 export default function ThemesList({ column }) {
     const dispatch = useDispatch()
-    const themes = useSelector(getAllThemes)
+    const themes = useSelector(getFilteredThemes)
+
     
     useEffect(() => {
         dispatch(themesOperations.getAllThemes())
@@ -25,11 +26,9 @@ export default function ThemesList({ column }) {
                 </svg>
                 <span className="link-text">Add new theme</span>
             </Link>
-            {themes.length > 0 ? themes.map(theme => {
-                return (
-                    <Theme name={theme.name} key={theme._id} path={theme._id}/>
-                )
-            }) : null
+            {themes.length > 0 ? themes.map(theme => 
+                <Theme name={theme.name} key={theme._id} path={theme._id}/>
+            ) : null
             }
         </div>
     );
