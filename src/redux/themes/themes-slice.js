@@ -14,7 +14,6 @@ const themesSlice = createSlice({
             state.themes = [action.payload.data.data.result, ...state.themes]
         },
         [themesOperations.getAllThemes.fulfilled](state, action) {
-
             state.themes = [...action.payload]
         }
     }

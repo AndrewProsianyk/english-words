@@ -27,7 +27,7 @@ function App() {
     isFetchingCurrentUser ? <h1>LOADING...</h1> : (
       isLoggedIn ?
         <div className="App">
-          < Routes >
+          <Routes>
             <Route exact path="/flashcards" element={<FlashcardsPage />} />
             <Route path="/exam" element={<span>Exam</span>} />
             <Route path="/settings" element={<span>settings</span>} />

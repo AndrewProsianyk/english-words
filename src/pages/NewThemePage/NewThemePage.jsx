@@ -1,17 +1,23 @@
 import {useState} from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './NewThemePage.scss'
-import WordCardsList from '../../components/WordCardsList/WordCardsList'
 import { useDispatch } from 'react-redux';
 import themesOperations from '../../redux/themes/themes-operations'
+import WordCardsList from '../../components/WordCardsList/WordCardsList';
 
 export default function NewThemePage() {
-    const [nameField, setNameField] = useState('New theme')
+    const [nameField, setNameField] = useState('')
+    const [created, setCreated] = useState(false)
+    const [themeId, setThemeId] = useState('')
     const dispatch = useDispatch()
 
     const onAddThemeClick = () => {
-        dispatch(themesOperations.addTheme({ name: nameField }))
-        // dispatch(themesOperations.getAllThemes())
+        dispatch(themesOperations.addTheme({ name: nameField })).then((data) => {
+            if (data.payload.status === 201) {
+                setCreated(true)
+                setThemeId(data.payload.data.data.result._id)
+            }
+        }).catch(error=> console.log(error))
     }
 
     return (
@@ -23,7 +29,7 @@ export default function NewThemePage() {
                     </svg>
                 </Link>
                 <span className="card-title">
-                    {nameField ===''? 'New card' : nameField}
+                    New theme
                 </span>
                 <button
                     className="done-button"
@@ -41,7 +47,7 @@ export default function NewThemePage() {
                     type="text"
                 />
             </label>
-            {/* <WordCardsList /> */}
+            {created ? <WordCardsList themeId={themeId} /> : null}
         </div>
     )
 }
